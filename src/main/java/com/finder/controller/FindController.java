@@ -1,6 +1,7 @@
 package com.finder.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -10,8 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FindController {
 
-    @RequestMapping("/")
-    public String index(){
-        return "Find what you want:";
+    @RequestMapping(value="find", method = {RequestMethod.POST}, params="value")
+    public String index (String value)
+    {
+        return value;
     }
 }
