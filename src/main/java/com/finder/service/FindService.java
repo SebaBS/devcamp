@@ -1,14 +1,12 @@
 package com.finder.service;
 
+import com.finder.model.Storage;
 import org.apache.commons.io.IOUtils;
 
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
-
-/**
- * Created by adam on 21.05.16.
- */
+import java.util.HashMap;
 
 
 public class FindService {
@@ -25,4 +23,10 @@ public class FindService {
     }
 
 
+    public void lookFor(String value, Storage storage)
+    {
+        HashMap<String, String> processed = new HashMap<String, String>();
+        processed.put("value", value);
+        storage.save(processed);
+    }
 }

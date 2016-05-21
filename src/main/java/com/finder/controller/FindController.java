@@ -1,5 +1,6 @@
 package com.finder.controller;
 
+import com.finder.model.Storage;
 import com.finder.service.FindService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,11 +18,13 @@ public class FindController {
     @RequestMapping(value="find", method = {RequestMethod.POST}, params="value")
     public String index (String value)
     {
-        try{
-            return findService.gatherInformations(value);
+        Storage storage = new Storage();
+        try {
+            findService.lookFor(value, storage);
         } catch (Exception e) {
             return e.getMessage();
         }
+        return "";
     }
 
 }
