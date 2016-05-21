@@ -1,2 +1,2 @@
-# devcamp
-Repository for devcamp project
+# Finder
+Repository for finder project
