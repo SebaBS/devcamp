@@ -4,10 +4,12 @@ import com.finder.model.Engine;
 import com.finder.model.Enum.Web;
 import com.finder.model.Storage;
 import com.finder.service.FindService;
+import org.jsoup.nodes.Element;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,11 +35,18 @@ public class FindController {
     }
 
     @RequestMapping(value = "build", method = RequestMethod.GET, params = "value")
-    public List<String> getPath(String value){
+    public List<Element> getPath(String value){
         Engine engine = new Engine();
         engine.createPath(Web.GOOGLE, value);
         engine.createPath(Web.GOLDENLINE, value);
-        return engine.getPaths();
+        List<Element> list = new ArrayList<>();
+        try{
+            list = findService.gatherFromGoogle(value);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
+
 
 }
